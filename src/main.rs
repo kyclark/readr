@@ -8,7 +8,7 @@ use tokio::time::{Duration, sleep};
 
 #[derive(Debug, Parser)]
 struct Args {
-    /// Input file
+    /// Input file or "-" for STDIN
     #[arg()]
     file: String,
 
