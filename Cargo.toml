@@ -2,6 +2,10 @@
 name = "readr"
 version = "0.1.0"
 edition = "2024"
+description = "File reader"
+license = "BSD-3-Clause"
+repository = "https://github.com/kyclark/readr"
+authors = ["Ken Youens-Clark <kyclark@gmail.com>"]
 
 [dependencies]
 anyhow = "1.0.96"
