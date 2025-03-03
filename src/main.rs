@@ -33,18 +33,28 @@ async fn main() {
 // --------------------------------------------------
 async fn run(args: Args) -> Result<()> {
     let file = open(&args.file)?;
-    let mult = if args.fast { 0.5} else if args.slow { 2.} else {1.};
+    let mult = if args.fast {
+        0.5
+    } else if args.slow {
+        2.
+    } else {
+        1.
+    };
+
     for line in file.lines().map_while(Result::ok) {
         for char in line.chars() {
             print!("{char}");
+            std::io::stdout().flush()?;
             let ms = if ".!?\n".contains(char) {
+                // Longer pause at ending punctuation
                 500.
             } else if ",:;".contains(char) {
+                // Shorter pause for breath markers
                 200.
             } else {
+                // Default pause
                 50.
             } * mult;
-            std::io::stdout().flush()?;
             sleep(Duration::from_millis(ms as u64)).await;
         }
         println!();
